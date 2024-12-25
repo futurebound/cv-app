@@ -60,10 +60,10 @@ export default function EducationForm({ educationList, setEducationList }) {
         <button onClick={handleSubmit}>Add</button>
         {educationList.map((education, index) => (
           <div key={index}>
-            <p>{education.school}</p>
-            <p>{education.field}</p>
+            <p>School: {education.school}</p>
+            <p>Field of Study: {education.field}</p>
             <p>
-              {education.startDate} - {education.endDate}
+              Dates of Study: {education.startDate} - {education.endDate}
             </p>
           </div>
         ))}

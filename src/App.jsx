@@ -28,7 +28,10 @@ function App() {
           />
         </div>
         <div className='display-container'>
-          <ResumePreview personalInfo={personalInfo} />
+          <ResumePreview
+            personalInfo={personalInfo}
+            educationList={educationList}
+          />
         </div>
       </div>
     </>
