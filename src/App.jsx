@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+import EducationForm from './components/EducationForm'
 import PersonalInfoForm from './components/PersonalInfoForm'
 import ResumePreview from './components/ResumePreview'
 
@@ -11,6 +12,8 @@ function App() {
     phone: '',
   })
 
+  const [educationList, setEducationList] = useState([])
+
   return (
     <>
       <div className='content'>
@@ -18,6 +21,10 @@ function App() {
           <PersonalInfoForm
             personalInfo={personalInfo}
             setPersonalInfo={setPersonalInfo}
+          />
+          <EducationForm
+            educationList={educationList}
+            setEducationList={setEducationList}
           />
         </div>
         <div className='display-container'>
