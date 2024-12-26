@@ -8,9 +8,9 @@ export default function ResumePreview({
       <h2>Resume Preview</h2>
       <section className='resume-section'>
         <h3>Personal Info</h3>
-        <p>Name: {personalInfo.name}</p>
-        <p>Email: {personalInfo.email}</p>
-        <p>Phone: {personalInfo.phone}</p>
+        <p>
+          {personalInfo.name} | {personalInfo.email} | {personalInfo.phone}
+        </p>
       </section>
       <section className='resume-section'>
         <h3>Education</h3>

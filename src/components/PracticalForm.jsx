@@ -9,11 +9,20 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
     endDate: '',
   })
 
+  const [editIndex, setEditIndex] = useState(null)
+
   const handleSubmit = () => {
-    // copy old list, add new object, set state, clear form
-    const updatedList = [...practicalList]
-    updatedList.push(formData)
-    setPracticalList(updatedList)
+    // Changed from if (editIndex) to check if editIndex is not null
+    if (editIndex !== null) {
+      const editedList = [...practicalList]
+      editedList[editIndex] = formData
+      setPracticalList(editedList)
+      setEditIndex(null)
+    } else {
+      setPracticalList([...practicalList, formData])
+    }
+
+    // clear form
     setFormData({
       company: '',
       title: '',
@@ -21,6 +30,11 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
       startDate: '',
       endDate: '',
     })
+  }
+
+  const handleEdit = (index) => {
+    setFormData(practicalList[index])
+    setEditIndex(index)
   }
 
   return (
@@ -70,7 +84,9 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
             setFormData({ ...formData, endDate: e.target.value })
           }
         />
-        <button onClick={handleSubmit}>Add</button>
+        <button onClick={handleSubmit}>
+          {editIndex !== null ? 'Update' : 'Add'}
+        </button>
         {practicalList.map((job, index) => (
           <div key={index}>
             <p>Company: {job.company}</p>
@@ -79,6 +95,8 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
             <p>
               Dates of Job: {job.startDate} - {job.endDate}
             </p>
+            <button onClick={() => handleEdit(index)}>Edit</button>
+            {/* <button onClick={() => handleDelete(index)}>Delete</button> */}
           </div>
         ))}
       </section>

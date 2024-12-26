@@ -7,6 +7,7 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
 
   const handleSubmit = () => {
     setPersonalInfo(formData)
+    setFormData({ name: '', email: '', phone: '' })
   }
 
   return (
@@ -31,7 +32,7 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
         <input
           label='Phone'
           type='phone'
-          value={formData.Phone}
+          value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
         />
         <button onClick={handleSubmit}>Submit</button>
