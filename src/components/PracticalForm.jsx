@@ -37,6 +37,11 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
     setEditIndex(index)
   }
 
+  const handleDelete = (index) => {
+    const deletedList = practicalList.filter((_, i) => i !== index)
+    setPracticalList(deletedList)
+  }
+
   return (
     <>
       <h2>Practical Experience</h2>
@@ -96,7 +101,7 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
               Dates of Job: {job.startDate} - {job.endDate}
             </p>
             <button onClick={() => handleEdit(index)}>Edit</button>
-            {/* <button onClick={() => handleDelete(index)}>Delete</button> */}
+            <button onClick={() => handleDelete(index)}>Delete</button>
           </div>
         ))}
       </section>
