@@ -34,6 +34,11 @@ export default function EducationForm({ educationList, setEducationList }) {
     setEditIndex(index)
   }
 
+  const handleDelete = (index) => {
+    const deletedList = educationList.filter((_, i) => i !== index)
+    setEducationList(deletedList)
+  }
+
   return (
     <>
       <h2>Education</h2>
@@ -81,7 +86,7 @@ export default function EducationForm({ educationList, setEducationList }) {
               Dates of Study: {education.startDate} - {education.endDate}
             </p>
             <button onClick={() => handleEdit(index)}>Edit</button>
-            {/* <button onClick={() => handleDelete(index)}>Delete</button> */}
+            <button onClick={() => handleDelete(index)}>Delete</button>
           </div>
         ))}
       </section>
