@@ -14,9 +14,9 @@ export default function PracticalForm({ practicalList, setPracticalList }) {
   const handleSubmit = () => {
     // Changed from if (editIndex) to check if editIndex is not null
     if (editIndex !== null) {
-      const editedList = [...practicalList]
-      editedList[editIndex] = formData
-      setPracticalList(editedList)
+      const updatedList = [...practicalList]
+      updatedList[editIndex] = formData
+      setPracticalList(updatedList)
       setEditIndex(null)
     } else {
       setPracticalList([...practicalList, formData])

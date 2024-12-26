@@ -8,17 +8,30 @@ export default function EducationForm({ educationList, setEducationList }) {
     endDate: '',
   })
 
+  const [editIndex, setEditIndex] = useState(null)
+
   const handleSubmit = () => {
     // copy old list, add new object, set state, clear form
-    const updatedList = [...educationList]
-    updatedList.push(formData)
-    setEducationList(updatedList)
+    if (editIndex !== null) {
+      const updatedList = [...educationList]
+      updatedList[editIndex] = formData
+      setEducationList(updatedList)
+      setEditIndex(null)
+    } else {
+      setEducationList([...educationList, formData])
+    }
+
     setFormData({
       school: '',
       field: '',
       startDate: '',
       endDate: '',
     })
+  }
+
+  const handleEdit = (index) => {
+    setFormData(educationList[index])
+    setEditIndex(index)
   }
 
   return (
@@ -57,7 +70,9 @@ export default function EducationForm({ educationList, setEducationList }) {
             setFormData({ ...formData, endDate: e.target.value })
           }
         />
-        <button onClick={handleSubmit}>Add</button>
+        <button onClick={handleSubmit}>
+          {editIndex !== null ? 'Update' : 'Add'}
+        </button>
         {educationList.map((education, index) => (
           <div key={index}>
             <p>School: {education.school}</p>
@@ -65,6 +80,8 @@ export default function EducationForm({ educationList, setEducationList }) {
             <p>
               Dates of Study: {education.startDate} - {education.endDate}
             </p>
+            <button onClick={() => handleEdit(index)}>Edit</button>
+            {/* <button onClick={() => handleDelete(index)}>Delete</button> */}
           </div>
         ))}
       </section>
